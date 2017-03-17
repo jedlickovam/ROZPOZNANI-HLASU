@@ -1,5 +1,5 @@
-%%%%    Semestr·lnÌ pr·ce: ZSK
-%%%%    MarkÈta JedliËkov·
+%    Semestr√°ln√≠ pr√°ce: ZSK
+%    Mark√©ta Jedli√®kov√°
 
 slovnik = zeros (88200,10);              % 10 vzorku
 r = zeros (10,1);
@@ -23,7 +23,7 @@ for j = 1:10
     % subplot(5,2,j);  plot( y(start:last));
 end
 
-% vsechny na stejnou velikost --> pr˘mÏr
+% vsechny na stejnou velikost --> pr√πm√¨r
 prumer = int32(sum(r)/10);
 y = zeros(prumer,10);
 for i = 1:10
@@ -40,7 +40,7 @@ fy = fy.*conj(fy);
 norm = zeros(600,10);
 for i = 1:10
     % figure(1); plot(fy(1:600,1));
-    norm(1:600,i) = fy(1:600,i)/sqrt(sum(fy(1:600,i).^2)); % euklidovsk· norma
+    norm(1:600,i) = fy(1:600,i)/sqrt(sum(fy(1:600,i).^2)); % euklidovsk√° norma
     % subplot(5,2,i); plot(norm(1:600,1));
 end
 
@@ -52,23 +52,23 @@ end
 prumer = prumer/10;
 %figure(1); plot(prumer);
 
-%% nalezeni standartni odchylky
+% nalezeni standartni odchylky
 std = 0;
 for i = 1:10
     std = std + sum((norm(1:600,i)-prumer).^2);
 end
 std = sqrt(std/10);
 
-%% Proces rozpozn·v·nÌ
-input('Zm·ËknÏte enter a ¯eknÏte slovo, kterÈ chcete rozpoznat.')
+% Proces rozpozn√°v√°n√≠
+input('Zmacknete enter a reknete slovo, kter√© chcete rozpoznat.')
 
-% Nahr·nÌ slova
+% Nahr√°n√≠ slova
 recorder = audiorecorder(44100,8,1);
 recordblocking(recorder, 2);
 y = getaudiodata(recorder);
 play(recorder);
 
-% o¯ÌznutÌ
+% o√∏√≠znut√≠
 s = abs(y);
 start = 1;
 last = 88200;
@@ -94,15 +94,15 @@ figure(12); plot(normalizovana);
 hold on;
 subplot (2,1,1);
 plot (normalizovana)
-title ('NormalizovanÈ spektrum')
+title ('Normalizovan√© spektrum')
 subplot (2,1,2);
 plot (prumer);
-title ('NormalizovanÈ spektrum prumeru deseti vzork˘')
+title ('Normalizovan√© spektrum prumeru deseti vzork√π')
 
 % Confirm weather user's voice is within two standard deviations of mean.
 s = sqrt(sum((normalizovana - prumer).^2));
 if s < 1.7*std
-    disp('Bylo rozpozn·no slovo MarkÈta !!!!');
+    disp('Bylo rozpozn√°no slovo Mark√©ta !!!!');
 else
-    disp('Nebylo rozpozn·no slovo MarkÈta !!!!');
+    disp('Nebylo rozpozn√°no slovo Mark√©ta !!!!');
 end
